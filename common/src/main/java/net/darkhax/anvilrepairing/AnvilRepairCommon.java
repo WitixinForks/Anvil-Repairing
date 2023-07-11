@@ -1,4 +1,4 @@
-package net.darkhax.anvilrepair;
+package net.darkhax.anvilrepairing;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,8 +16,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class AnvilRepairCommon {
 
-    public static final String MODID = "anvilrepair";
-    public static final TagKey<Item> ANVIL_REPAIR_ITEMS = TagKey.create(Registries.ITEM, new ResourceLocation(MODID, "anvil_repair_items"));
+    public static final String MODID = "anvilrepairing";
+    public static final TagKey<Item> ANVIL_REPAIR_ITEMS = TagKey.create(
+            Registry.ITEM_REGISTRY, new ResourceLocation(MODID, "anvil_repair_items"));
 
 
     public static boolean repairAnvil(Level level, TagKey<Item> ironTag, Player player, BlockPos pos) {
