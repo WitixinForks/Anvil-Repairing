@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "anvilrepair",
+  "id": "anvilrepairing",
   "version": "${version}",
   "name": "${mod_name}",
   "description": "${mod_description}",
@@ -21,7 +21,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.darkhax.anvilrepair.AnvilRepairFabric"
+      "net.darkhax.anvilrepairing.AnvilRepairFabric"
     ]
   },
   "depends": {
