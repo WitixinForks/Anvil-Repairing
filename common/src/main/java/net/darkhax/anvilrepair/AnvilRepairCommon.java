@@ -16,7 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class AnvilRepairCommon {
 
-    public static final TagKey<Item> ANVIL_REPAIR_ITEMS = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("anvilrepair", "anvil_repair_items"));
+    public static final String MODID = "anvilrepair";
+    public static final TagKey<Item> ANVIL_REPAIR_ITEMS = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(MODID, "anvil_repair_items"));
 
     public static boolean repairAnvil(Level level, TagKey<Item> ironTag, Player player, BlockPos pos) {
         final BlockState blockState = level.getBlockState(pos);
@@ -34,12 +35,12 @@ public class AnvilRepairCommon {
 
     public static void upgradeAnvil(Level level, BlockPos pos, Block block, Direction direction) {
         if (block == Blocks.CHIPPED_ANVIL) {
-            level.setBlock(pos, Blocks.ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, direction), 2);
+            level.setBlock(pos, Blocks.ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, direction), Block.UPDATE_CLIENTS);
             level.levelEvent(LevelEvent.SOUND_ANVIL_USED, pos, 0);
         }
         else {
             //block == DamagedAnvilHere
-            level.setBlock(pos, Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, direction), 2);
+            level.setBlock(pos, Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, direction), Block.UPDATE_CLIENTS);
             level.levelEvent(LevelEvent.SOUND_ANVIL_USED, pos, 0);
         }
     }
