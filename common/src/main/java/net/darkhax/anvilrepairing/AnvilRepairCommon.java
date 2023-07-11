@@ -18,7 +18,7 @@ public class AnvilRepairCommon {
 
     public static final String MODID = "anvilrepairing";
     public static final TagKey<Item> ANVIL_REPAIR_ITEMS = TagKey.create(
-            Registry.ITEM_REGISTRY, new ResourceLocation(MODID, "anvil_repair_items"));
+            Registries.ITEM, new ResourceLocation(MODID, "anvil_repair_items"));
 
 
     public static boolean repairAnvil(Level level, TagKey<Item> ironTag, Player player, BlockPos pos) {
