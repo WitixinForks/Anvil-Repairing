@@ -1,4 +1,4 @@
-package net.darkhax.anvilrepair;
+package net.darkhax.anvilrepairing;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;

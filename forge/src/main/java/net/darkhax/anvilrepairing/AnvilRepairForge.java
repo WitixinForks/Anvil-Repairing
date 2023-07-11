@@ -1,4 +1,4 @@
-package net.darkhax.anvilrepair;
+package net.darkhax.anvilrepairing;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
