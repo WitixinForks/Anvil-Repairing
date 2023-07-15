@@ -27,11 +27,11 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
             property 'terminal.ansi', 'true'
-            
+
             if (project.ext.mixin_enabled) {
                 arg "-mixin.config=${mod_id}.mixins.json"
             }
-            
+
             mods {
                 modClientRun {
                     source sourceSets.main
@@ -57,7 +57,7 @@ minecraft {
             if (project.ext.mixin_enabled) {
                 arg "-mixin.config=${mod_id}.mixins.json"
             }
-            
+
             mods {
                 modServerRun {
                     source sourceSets.main
@@ -72,7 +72,7 @@ dependencies {
 
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly project(':common')
-    
+
     annotationProcessor 'org.spongepowered:mixin:0.8.5-SNAPSHOT:processor'
 }
 
@@ -135,18 +135,18 @@ jar {
     manifest {
 
         def newProps = [:]
-        
+
         if (project.ext.mixin_enabled) {
             newProps['MixinConfigs'] = "${mod_id}.mixins.json"
         }
-        
+
         attributes(newProps)
     }
 }
-    
+
 // -- Mixin Support
 if (project.ext.mixin_enabled) {
-    
+
     mixin {
 
         // Tells the mixin plugin where to put the generated refmap file.
@@ -168,15 +168,15 @@ project.publishing {
     }
 
     repositories {
-    
+
         maven {
-        
+
             // Sets maven credentials if they are provided. This is generally
             // only used for external/remote uploads.
             if (project.hasProperty('mavenUsername') && project.hasProperty('mavenPassword')) {
-            
+
                 credentials {
-                
+
                     username findProperty('mavenUsername')
                     password findProperty('mavenPassword')
                 }
@@ -198,18 +198,18 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.changelogType = 'markdown'
     mainFile.changelog = project.ext.mod_changelog
     mainFile.addJavaVersion('Java 17')
-    
+
     // Append Patreon Supporters
     def patreonInfo = project.findProperty('patreon')
-        
+
     if (patreonInfo) {
         mainFile.changelog += "\n\nThis project is made possible by [Patreon](${patreonInfo.campaignUrlTracked}) support from players like you. Thank you!\n\n${patreonInfo.pledgeLog}"
     }
-    
+
     doLast {
-    
+
         if (project.hasProperty('mod_homepage')) {
-        
+
             project.ext.curse_file_url = "${mod_homepage}/files/${mainFile.curseFileId}"
         }
     }

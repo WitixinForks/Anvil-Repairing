@@ -89,17 +89,17 @@ project.publishing {
             from components.java
         }
     }
-    
+
     repositories {
-    
+
         maven {
-        
+
             // Sets maven credentials if they are provided. This is generally
             // only used for external/remote uploads.
             if (project.hasProperty('mavenUsername') && project.hasProperty('mavenPassword')) {
-            
+
                 credentials {
-                
+
                     username findProperty('mavenUsername')
                     password findProperty('mavenPassword')
                 }
@@ -112,29 +112,29 @@ project.publishing {
 
 // CurseForge Publishing
 task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
-    
+
     apiToken = findProperty('curse_auth')
 
     def mainFile = upload(curse_project, file("${project.buildDir}/libs/${archivesBaseName}-${version}.jar"))
     mainFile.releaseType = 'release'
     mainFile.addGameVersion('Client', 'Server')
     mainFile.changelogType = 'markdown'
-    mainFile.changelog = project.ext.mod_changelog 
+    mainFile.changelog = project.ext.mod_changelog
     mainFile.addJavaVersion('Java 17')
     mainFile.addModLoader('Fabric')
     mainFile.addModLoader('Quilt')
-    
+
     // Append Patreon Supporters
     def patreonInfo = project.findProperty('patreon')
-        
+
     if (patreonInfo) {
         mainFile.changelog += "\n\nThis project is made possible by [Patreon](${patreonInfo.campaignUrlTracked}) support from players like you. Thank you!\n\n${patreonInfo.pledgeLog}"
     }
-    
+
     doLast {
-    
+
         if (project.hasProperty('mod_homepage')) {
-        
+
             project.ext.curse_file_url = "${mod_homepage}/files/${mainFile.curseFileId}"
         }
     }

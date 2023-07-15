@@ -1,6 +1,6 @@
 package net.darkhax.anvilrepairing;
 
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.InteractionResult;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -9,13 +9,14 @@ import net.minecraftforge.fml.common.Mod;
 public class AnvilRepairForge {
 
     public AnvilRepairForge() {
+
         MinecraftForge.EVENT_BUS.addListener(this::handleInteractEvent);
     }
 
     private void handleInteractEvent(final PlayerInteractEvent.RightClickBlock event) {
-        final Player player = event.getEntity();
-        if (event.getLevel().isClientSide || player.isSpectator()) return;
-        if (AnvilRepairCommon.repairAnvil(event.getLevel(), AnvilRepairCommon.ANVIL_REPAIR_ITEMS, player, event.getHitVec().getBlockPos())) {
+
+        if (AnvilRepairCommon.attemptAnvilRepair(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec()) == InteractionResult.SUCCESS) {
+
             event.setCanceled(true);
         }
     }

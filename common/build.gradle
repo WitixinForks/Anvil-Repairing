@@ -13,7 +13,7 @@ minecraft {
 }
 
 dependencies {
-     compileOnly group:'org.spongepowered', name:'mixin', version:'0.8.4'
+    compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.4'
 }
 
 processResources {
@@ -39,15 +39,15 @@ project.publishing {
     }
 
     repositories {
-    
+
         maven {
-        
+
             // Sets maven credentials if they are provided. This is generally
             // only used for external/remote uploads.
             if (project.hasProperty('mavenUsername') && project.hasProperty('mavenPassword')) {
-            
+
                 credentials {
-                
+
                     username findProperty('mavenUsername')
                     password findProperty('mavenPassword')
                 }

@@ -1,12 +1,12 @@
 apply from: 'gradle/property_helper.gradle'
 
 repositories {
-  
+
     maven {
 
         url 'https://maven.blamejared.com'
     }
-    
+
     maven {
         url "https://dvs1.progwml6.com/files/maven"
     }
