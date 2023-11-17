@@ -1,7 +1,7 @@
 package net.darkhax.anvilrepairing;
 
 import net.minecraft.ResourceLocationException;
-import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -76,7 +76,7 @@ public class AnvilRepairCommon {
 
     private static void awardAdvancement(ServerPlayer player, ResourceLocation advancementId) {
 
-        final Advancement toGrant = player.getServer().getAdvancements().getAdvancement(advancementId);
+        final AdvancementHolder toGrant = player.getServer().getAdvancements().get(advancementId);
 
         if (toGrant != null) {
 
@@ -84,7 +84,7 @@ public class AnvilRepairCommon {
 
             if (!progress.isDone()) {
 
-                for(String remainingCriteria : progress.getRemainingCriteria()) {
+                for (String remainingCriteria : progress.getRemainingCriteria()) {
 
                     player.getAdvancements().award(toGrant, remainingCriteria);
                 }
